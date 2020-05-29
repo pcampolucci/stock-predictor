@@ -1,0 +1,167 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Shell Predictions</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+        <title>Shell Predictions</title>
+
+
+    </head>
+    <body>
+
+    <script>
+
+        Chart.pluginService.register({
+    beforeDraw: function (chart, easing) {
+        if (chart.config.options.chartArea && chart.config.options.chartArea.backgroundColor) {
+            var helpers = Chart.helpers;
+            var ctx = chart.chart.ctx;
+            var chartArea = chart.chartArea;
+
+            ctx.save();
+            ctx.fillStyle = chart.config.options.chartArea.backgroundColor;
+            ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
+            ctx.restore();
+        }
+    }
+});
+    </script>
+
+        {% extends "home.HTML" %}
+        {% block content %}
+        <h1 class="logo"><center><strong>Shell Stock Market Predictor</strong></center></h1>
+        <canvas id="chart" style="height: 500px; width: 100%;"></canvas>
+        <script>
+
+        const xlabels = [];
+        const yvalues = [];
+
+
+        ChartIt();
+
+
+        async function ChartIt(){
+        await getData();
+        const ctx = document.getElementById('chart').getContext('2d');
+
+        const myChart = new Chart(ctx, {
+
+            type: 'line',
+            data: {
+            color: "white",
+                lineColor: "red",
+
+                labels: xlabels,
+                datasets: [{
+
+
+                    label: 'Historical Stock Value',
+                    labelColor: "white",
+                    data: yvalues,
+                    fill: false,
+                    backgroundColor: 'white',
+                    borderColor: 'white',
+                    borderWidth: 1
+                },
+
+                    {
+
+                    label: 'Predicted Stock Value',
+                    labelColor: "red",
+                    data: [60, 60.7, 61, 60.6],
+                    fill: false,
+                    backgroundColor: 'red',
+                    borderColor: 'red',
+                    borderWidth: 1
+                }
+                ]
+
+
+
+            },
+
+        options: {
+        legend: {
+       labels: {
+         fontColor: 'white'
+      }
+   },
+        pan: {
+      enabled: true,
+      mode: 'x',
+    },
+    zoom: {
+      enabled: true,
+      mode: 'x',
+    },
+    responsive: true,
+            animation: {
+        duration: 900,
+        easing: 'linear'
+    },
+            chartArea: {
+        backgroundColor: 'rgba(30, 131, 143,0.95)'
+    },
+            scales: {
+                xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Time',
+                                fontColor:'white',
+                                fontSize:30
+                            },
+                            ticks: {
+                               fontColor: "white",
+                               fontSize: 14
+                              }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Stock Value',
+                                fontColor: 'white',
+                                fontSize:30
+                            },
+                            ticks: {
+                                  fontColor: "white",
+                                  fontSize: 14
+                            }
+                        }]
+
+            }
+        }
+        });
+        }
+
+
+        async function getData(){
+            const response=await fetch("/static/RDS-A.csv");
+            const data = await response.text();
+
+            const table = data.split('\n').slice(1,-1);
+            table.forEach(row => {
+            const columns = row.split(',');
+            const date = columns[0];
+            xlabels.push(date);
+            const close= columns[4];
+            yvalues.push(close);
+
+            console.log(date, close);
+            });
+
+            }
+
+
+
+        </script>
+
+
+        {% endblock %}
+    </body>
+</html>

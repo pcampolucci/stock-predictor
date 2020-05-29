@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+      <style>
+      h1 {
+        font-size: 45px;
+      }
+
+      h2 {
+        font-size: 30px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+      .btn {
+      background-color: MediumTurquoise;
+      border: none;
+      color: white;
+      padding: 12px 16px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+      h1 {
+        font-family: "Courier New", Times, serif;
+      }
+
+      h2 {
+        font-family: "Courier New", Times, serif;
+      }
+    p {
+      font-family: "Courier New", Times, serif;
+   }
+    /* Darker background on mouse-over */
+    .btn:hover {
+      background-color: #28a4a4;
+    }
+      .dropbtn {
+      background-color: #28a4a4;
+      color: white;
+      padding: 16px;
+      font-size: 20px;
+      border: 1px solid ;
+      border-color: LightGrey;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: MediumTurquoise;
+      min-width: 400px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      font-size: 20px;
+      display: block;
+    }
+
+    .dropdown-submenu {
+      position: relative;
+    }
+
+    .dropdown-submenu .dropdown-menu {
+      top: 0;
+      left: 100%;
+      margin-top: -1px;
+    }
+
+    .dropdown-content a:hover {background-color: #28a4a4;}
+
+    .dropdown:hover .dropdown-content {display: block;}
+
+    .dropdown:hover .dropbtn {background-color: #28a4a4;}
+      /*the container must be positioned relative:*/
+      .custom-select {
+        position: relative;
+        font-family: Arial;
+      }
+
+      .custom-select select {
+        display: none; /*hide original SELECT element:*/
+      }
+
+      .select-selected {
+        background-color: MediumTurquoise;
+      }
+
+      /*style the arrow inside the select element:*/
+      .select-selected:after {
+        position: absolute;
+        content: "";
+        top: 6px;
+        right: 6px;
+        width: 0;
+        height: 0;
+        border: 6px solid ;
+        border-color: white;
+      }
+
+      /*point the arrow upwards when the select box is open (active):*/
+      .select-selected.select-arrow-active:after {
+        border-color: transparent transparent #fff transparent;
+        top: 0px;
+      }
+
+      /*style the items (options), including the selected item:*/
+      .select-items div,.select-selected {
+        color: #ffffff;
+        padding: 10px 16px;
+        border: 1px solid transparent;
+        border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      /*style items (options):*/
+      .select-items {
+        position: absolute;
+        background-color: MediumTurquoise;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 99;
+      }
+
+      /*hide the items when the select box is closed:*/
+      .select-hide {
+        display: none;
+      }
+
+      .select-items div:hover, .same-as-selected {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+      ul {
+          padding: 0;
+          margin: 0;
+      }
+
+      li {
+          display: inline;
+          position: relative;
+      }
+
+      ul ul {
+          position: absolute;
+          display: none;
+      }
+
+      li:hover ul {
+          display: block;
+      }
+
+article {
+			width: 600px;
+			margin: 0 auto;
+			background: #000;
+			color: #fff;
+			border-radius: 5px;
+			box-shadow: 0 0 15px 2px #666;
+		}
+
+		section {
+			clear: left;
+		}
+
+		h1 {
+			font-size: 45px;
+			font-weight: 100;
+			letter-spacing: 15px;
+			text-align: center;
+		}
+
+		h1, #main_content, #dog_link {
+			padding: 15px;
+		}
+
+		p {
+			margin: 15px 0;
+		}
+
+		a {
+			color: #06c;
+		}
+
+		#main_nav ul {
+			background: white;
+			float: left;
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+
+		#main_nav li {
+			float: left;
+			position: relative;
+			width: 150px;
+			list-style: none;
+			-webkit-transition: .5s;
+			transition: .5s;
+		}
+
+		#main_nav > ul > li > a, h1 {
+			text-transform: uppercase;
+		}
+
+		#main_nav a {
+			display: block;
+			text-decoration: none;
+			padding: 5px 15px;
+			color: #000;
+		}
+
+		#main_nav ul ul {
+			position: absolute;
+			left: 0;
+			top: 100%;
+			visibility: hidden;
+			opacity: 0;
+		}
+
+		#main_nav ul ul ul {
+			left: 100%;
+			top: 0;
+		}
+
+		#main_nav li:hover, #main_nav li:hover li {
+			background: #ddd;
+		}
+
+		#main_nav li li:hover, #main_nav li li:hover li {
+			background: #bbb;
+		}
+
+		#main_nav li li li:hover {
+			background: #999;
+		}
+
+		#main_nav li:hover > ul {
+			visibility: visible;
+			opacity: 1;
+		}
+		.caret{
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 13.0px 7.5px 0 7.5px;
+        border-color: #dae1e8 transparent transparent transparent;
+        line-height: 0px;
+        _border-color: #dae1e8 #000000 #000000 #000000;
+        _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+        }
+      </style>
+  </head>
+
+
+  <body style="background: url(https://www.iqmetrix.com/hubfs/04_Resources/01_Blog/01_Daily_Dose/bigdatablog.jpg) fixed" text="white">
+    {% extends "template.html" %}
+    {% block content %}
+    <h1 class="logo"><center><strong>Stock Market Predictor</strong></center></h1>
+    <br>
+    <h2> <center> Please choose the company for which you would like to see stock value predictions: </center> </h2>
+
+  <!--surround the select box with a "custom-select" DIV element. Remember to set the width:-->
+    <center>
+      <div class="dropdown" style="width:400px;">
+        <button class="dropbtn" style="width:400px;"><font color="LightGrey">Choose one of the following oil companies..</font> </button>
+          <div class="dropdown-content">
+            <a href="{{ url_for('shellpred_test') }}">Shell</a>
+            <a href="{{ url_for('lukoilpred') }}">Lukoil</a>
+            <a href="{{ url_for('sinopecpred') }}">Sinopec</a>
+            <a href="{{ url_for('exxonpred') }}">Exxon Mobil </a>
+
+          </div>
+      </div>
+
+
+
+    </center>
+
+
+
+
+
+    {% endblock %}
+
+  </body>
+</html>
+
+$(document).ready(function(){
+ $('.dropdown-submenu a.test').on("click", function(e){
+ $(this).next('ul').toggle();
+ e.stopPropagation();
+ e.preventDefault();
+ });
+});
