@@ -5,7 +5,7 @@ Author: Pietro Campolucci
 """
 
 # import packages
-from src.new_version.retreive_data import GetDataset
+from src.execution.retreive_data import GetDataset
 from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
 import seaborn as sns

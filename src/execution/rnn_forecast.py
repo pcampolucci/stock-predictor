@@ -5,8 +5,8 @@ Author: Pietro Campolucci
 """
 
 # import packages
-from src.new_version.retreive_data import GetDataset
-from src.new_version.rnn_helpers import make_partitions
+from src.execution.retreive_data import GetDataset
+from src.execution.rnn_helpers import make_partitions
 
 
 # debugging
@@ -41,6 +41,8 @@ class RNN:
         self.train_size = train_size
         self.past_size = past_size
         self.future_size =future_size
+        self.batch_size = 100
+        self.buffer = 1000
 
     def show_features(self):
         print(self.features)
@@ -68,6 +70,9 @@ class RNN:
                                                          n_past, n_prediction, step)
 
         return train_partitions, train_labels, valid_partitions, valid_labels
+
+    def batches(self):
+        pass
 
 
 # debugging script =============================================================================================
